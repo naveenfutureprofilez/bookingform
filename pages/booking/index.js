@@ -6,8 +6,21 @@ import EditLocationIcon from '@mui/icons-material/EditLocation';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import DatePicker from "react-datepicker";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import "react-datepicker/dist/react-datepicker.css";
+import Popup from '../elements/Popup';
 export default function booking() {
+
+  const [openModal, setOpenModal] = useState(false);
+  const [location, setLocation] = React.useState('');
+  const handleChange = (event) => {
+    setLocation(event.target.value);
+  };
+
   const [step1, setStep1] = useState(true);
   const [step2, setStep2] = useState(false);
   function nextstep2() {
@@ -24,7 +37,6 @@ export default function booking() {
     return currentDate.getTime() < selectedDate.getTime();
   };
 
-
   return <>
     <div className='pageWrap'>
       {/* step 1 */}
@@ -34,28 +46,36 @@ export default function booking() {
           <p className='blue-text' >Enter your Basic Booking Information</p>
           <div className='formOuter'>
             <div class="field__wrap">
-              <input class="field__input" value="John Deo" type="text" name="name" placeholder="Your Name" />
+              <input class="field__input" value="" type="text" name="name" placeholder="Your Name" />
               <div class="field__icon">
                 <AccountCircleIcon />
               </div>
             </div>
             <div class="field__wrap">
-              <input class="field__input" value="+1234567890" type="text" name="phone" placeholder="Phone" />
+              <input class="field__input" value="" type="text" name="phone" placeholder="Phone" />
               <div class="field__icon">
                 <PhoneIcon />
               </div>
             </div>
             <div class="field__wrap">
-              <input class="field__input" value="example@gmail.com" type="email" name="email" placeholder="Your email" />
+              <input class="field__input" value="" type="email" name="email" placeholder="example@gmail.com" />
               <div class="field__icon">
                 <MailOutlineIcon />
               </div>
             </div>
             <div class="field__wrap select-wrap">
-              <select class="field__input select select_small"  >
-                <option>Zym Location</option>
-                <option>My Location</option>
-              </select>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Location</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={location}
+                  label="Location"
+                  onChange={handleChange} >
+                  <MenuItem value={"Zym Location"}>Zym Location</MenuItem>
+                  <MenuItem value={"My Location"}>My Location</MenuItem>
+                </Select>
+              </FormControl>
               <div class="field__icon">
                 <EditLocationIcon />
               </div>
@@ -80,26 +100,36 @@ export default function booking() {
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
-                  strictParsing  filterTime={filterPassedTime} />
+                  strictParsing filterTime={filterPassedTime} />
               </div>
-              <div className='d-selector mb-2' >
-                <label>Time</label>
-                <AccessTimeIcon />
-                <DatePicker
-                  selected={startTime}
-                  onChange={(date) => setStartTime(date)}
-                  showTimeSelect
-                  showTimeSelectOnly
-                  timeIntervals={30} filterTime={filterPassedTime}
-                  timeCaption="Time"
-                  dateFormat="h:mm aa"
-                /> 
+              <div className='avilableSlot' >
+                <h2>Available Slots</h2>
+                <div className='slotList' >
+                  <div className='slot' >
+                    <input type="radio" id='slot' name="slot" />
+                    <label htmlFor='slot' > 09:30 AM </label>
+                  </div>
+                  <div className='slot' >
+                    <input type="radio" id='slot2' name="slot" />
+                    <label htmlFor='slot2' > 10:30 AM </label>
+                  </div>
+                </div>
               </div>
             </div>
             <button className='mainbtn reschedule'>Reschedule</button>
+            <Popup text="Open Modal" status={openModal} >
+              <div className='thankyouPopup' >
+                <img src='/thankyou.png' width="140px" height="140px" className='thankyouImage' />
+                <h2>Booking Successful!</h2>
+                <h3>2 April 2020 by 12:00 PM</h3>
+                <p className='grey-text' >Booking Detals has been sent to your Email: <strong>marianderson@gmail.com</strong></p>
+              </div>
+            </Popup>
           </div>
         </div>
-      </> : ''} 
+      </> : ''}
     </div>
   </>
 }
+
+
