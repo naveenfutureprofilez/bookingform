@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../styles/booking.css'
+import './elements/spin.css'
 import Head from 'next/head';
 function MyApp({ Component, pageProps }) {
   return <>

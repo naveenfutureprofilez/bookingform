@@ -16,9 +16,9 @@ export default function Popup(props) {
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = () => {
         setOpen(false);
+        window.location.reload();
     };
 
     return <>
