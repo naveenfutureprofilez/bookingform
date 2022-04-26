@@ -87,12 +87,12 @@ body{font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antia
 .slot input:checked + label{background:#2a85ff;color:#fff !important;}
 .slotList{display:flex;margin:0 -5px;flex-wrap:wrap;}
 .NotimeSlot{margin:10px 0;padding:15px;display:block;text-align:center;background:#232729;border-radius:3px;color:#ccc;font-size:13px;font-weight:300 !important;letter-spacing:1px;}
-
+ 
 .position-relative { position: relative;}
 .MuiModal-root.MuiPopover-root .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded {background: #25292e !important;}
 .MuiModal-root.MuiPopover-root .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded li {
     color: #ddd !important;
-} 
+}  
 .pageWrap {
     padding: 25px;
 }

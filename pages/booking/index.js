@@ -161,7 +161,7 @@ export default function booking({locations}) {
       if (jsonResp.status) {
         setLoad(false);
         setBookingDone(jsonResp.status);
-        toast.success("Booking Created");
+        toast.success("Booking Created !!");
       } else {
         console.log(jsonResp.errors);
       }
@@ -300,7 +300,7 @@ export async function getStaticProps(context) {
     }
   }
   return {
-    props: {locations}, // will be passed to the page component as props
+    props: {locations}, 
   }
 }
 
